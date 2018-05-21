@@ -1,0 +1,49 @@
+﻿@page "/ceppage"
+@inject HttpClient Client;
+<p>
+    <input type="text" bind="number" />
+</p>
+<p>
+    <button onclick="@OnClickCepAsync">Recuperar</button>
+    <button onclick="@OnClickClear">Limpar</button>
+</p>
+@if (Result != null)
+{
+<div>
+    <p>@Result.cep</p>
+    <p>@Result.logradouro</p>
+    <p>@Result.complemento</p>
+    <p>@Result.bairro</p>
+    <p>@Result.localidade</p>
+    <p>@Result.uf</p>
+    <p>@Result.unidade</p>
+    <p>@Result.ibge</p>
+    <p>@Result.gia</p>    
+</div>
+}
+@functions {
+    public class CepResult
+    {
+        public string cep { get; set; }
+        public string logradouro { get; set; }
+        public string complemento { get; set; }
+        public string bairro { get; set; }
+        public string localidade { get; set; }
+        public string uf { get; set; }
+        public string unidade { get; set; }
+        public string ibge { get; set; }
+        public string gia { get; set; }
+    }
+    string number { get; set; } = "";
+    public CepResult Result { get; set; } = null;
+    async Task OnClickCepAsync()
+    {
+        OnClickClear();
+        Result = await Client
+            .GetJsonAsync<CepResult>($"http://viacep.com.br/ws/{number}/json/");
+    }
+    void OnClickClear()
+    {
+        Result = null;        
+    }
+}

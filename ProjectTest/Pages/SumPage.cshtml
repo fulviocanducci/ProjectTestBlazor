@@ -1,0 +1,31 @@
+﻿@page "/sumpage"
+
+<h1>Soma de Números</h1>
+
+<p>
+    <input type="text" id="t1" bind="T1" />
+</p>
+<p>
+    <input type="text" id="t2" bind="T2"/>
+</p>
+<p>
+    <button onclick="@OnClickSum">Somar</button>
+</p>
+<p>
+    <label>@T3</label>
+</p>
+
+@functions {
+    protected string T1 { get; set; } = "0";
+    protected string T2 { get; set; } = "0";
+    protected int T3 { get; set; } = 0;
+    protected void OnClickSum()
+    {
+
+        if (int.TryParse(T1, out int t1) &&
+            int.TryParse(T2, out int t2))
+        {
+            T3 = t1 + t2;
+        }
+    }
+}

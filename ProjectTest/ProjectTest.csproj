@@ -13,4 +13,21 @@
     <DotNetCliToolReference Include="Microsoft.AspNetCore.Blazor.Cli" Version="0.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\SumPage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Pages\SumPage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Pages\CepPage.cshtml" />
+    <None Include="Pages\SumPage.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <BlazorGenerate Remove="Pages\CepPage.cshtml" />
+  </ItemGroup>
+
 </Project>
